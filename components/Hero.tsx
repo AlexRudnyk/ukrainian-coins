@@ -5,7 +5,7 @@ const raleway = Raleway({ subsets: ["cyrillic"], weight: "700" });
 
 const Hero = () => {
   return (
-    <div className="mt-16">
+    <div className="my-16">
       <h2 className={`${raleway.className} text-7xl mb-7 text-center`}>
         Колекціонуй моменти історії –
       </h2>
