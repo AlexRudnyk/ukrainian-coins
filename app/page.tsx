@@ -1,14 +1,10 @@
 import { getAllCoins } from "@/actions";
-import { AdminForm } from "@/components";
+import { AdminForm, ImagesBox } from "@/components";
 import { CoinType } from "@/types";
-import {
-  URL,
-  URLPattern,
-} from "next/dist/compiled/@edge-runtime/primitives/url";
 import Image from "next/image";
 
 export default async function Home() {
-  const coins = await getAllCoins();
+  const coins: CoinType[] | undefined = await getAllCoins();
 
   return (
     <main className="">
@@ -26,18 +22,17 @@ export default async function Home() {
                 alt="coin"
                 className="mb-3"
               />
-              <div className="flex">
-                {coin.photoURL.map((url: string) => (
-                  <Image
-                    key={Math.random()}
-                    src={url}
-                    width={60}
-                    height={60}
-                    alt="another looks of coin"
-                    className="mr-[10px] last:mr-0"
-                  />
-                ))}
-              </div>
+              <ImagesBox
+                coin={{
+                  _id: coin._id?.toString(),
+                  title: coin.title,
+                  price: coin.price,
+                  description: coin.description,
+                  spec: coin.spec,
+                  photoURL: coin.photoURL,
+                  year: coin.year,
+                }}
+              />
             </div>
           </li>
         ))}
