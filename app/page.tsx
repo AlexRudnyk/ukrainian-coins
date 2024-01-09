@@ -1,5 +1,5 @@
 import { getAllCoins } from "@/actions";
-import { ImagesBox } from "@/components";
+import { Hero, ImagesBox } from "@/components";
 import { CoinType } from "@/types";
 import Image from "next/image";
 
@@ -8,7 +8,7 @@ export default async function Home() {
 
   return (
     <main className="w-[1280px] mx-auto">
-      <div className="w-[1280px] h-[500px] bg-hero bg-contain bg-no-repeat rounded-3xl mt-20" />
+      <Hero />
       <ul>
         {coins?.map((coin: CoinType) => (
           <li key={coin._id}>
