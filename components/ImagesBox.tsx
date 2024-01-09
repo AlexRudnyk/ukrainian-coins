@@ -30,10 +30,10 @@ const ImagesBox = ({ coin }: ImagesBoxProps) => {
       {coin.photoURL.map((url: string) => (
         <a
           href={url}
-          className="group mr-[10px] last:mr-0 hover:scale-105 transition ease-in-out"
+          className="group mr-[15px] last:mr-0 hover:scale-105 transition ease-in-out cursor-zoom-in"
           key={Math.random()}
         >
-          <Image src={url} width={60} height={60} alt="another looks of coin" />
+          <Image src={url} width={90} height={90} alt="another looks of coin" />
         </a>
       ))}
     </div>

@@ -32,3 +32,14 @@ export async function addCoin(values: CoinType) {
   }
   revalidatePath("/");
 }
+
+export async function getCoinById(id: string) {
+  try {
+    await connect();
+
+    const coin = await Coin.findById({ _id: id });
+    return coin;
+  } catch (error) {
+    console.log(error);
+  }
+}
