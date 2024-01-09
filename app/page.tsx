@@ -1,5 +1,5 @@
 import { getAllCoins } from "@/actions";
-import { AdminForm, ImagesBox } from "@/components";
+import { ImagesBox } from "@/components";
 import { CoinType } from "@/types";
 import Image from "next/image";
 
@@ -8,7 +8,6 @@ export default async function Home() {
 
   return (
     <main className="">
-      <AdminForm />
       <ul>
         {coins?.map((coin: CoinType) => (
           <li key={coin._id}>
