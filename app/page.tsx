@@ -7,7 +7,8 @@ export default async function Home() {
   const coins: CoinType[] | undefined = await getAllCoins();
 
   return (
-    <main className="">
+    <main className="w-[1280px] mx-auto">
+      <div className="w-[1280px] h-[500px] bg-hero bg-contain bg-no-repeat rounded-3xl mt-20" />
       <ul>
         {coins?.map((coin: CoinType) => (
           <li key={coin._id}>
