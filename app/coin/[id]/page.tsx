@@ -9,7 +9,11 @@ export default async function CoinCard({ params }: { params: { id: string } }) {
 
   return (
     <div className="w-[1280px] mx-auto mt-12">
-      <Link href="/" className="underline inline-block mb-10 text-xl">
+      <Link
+        href="/"
+        className="underline inline-block mb-10 text-xl ml-10 relative"
+      >
+        <span className="before:absolute before:content-'' before:w-6 before:h-6 before:left-[-30px] before:top-[3px] before:bg-[url('/left-arrow-svgrepo-com.svg')]" />
         На головну
       </Link>
       <div className="flex">
@@ -38,7 +42,7 @@ export default async function CoinCard({ params }: { params: { id: string } }) {
           <p className="text-3xl mb-5">Рік випуску: {coin.year}</p>
           <p className="text-3xl mb-5">Штамп: {coin.spec}</p>
           <p className="text-3xl mb-5">Опис: {coin.description}</p>
-          {coin.price === "negotiated" ? (
+          {coin.price === "за домовленістю" ? (
             <p className="text-3xl">Орієнтовна ціна: {coin.price}</p>
           ) : (
             <p className="text-3xl">Орієнтовна ціна: {coin.price} USD</p>

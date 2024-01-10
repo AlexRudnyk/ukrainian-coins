@@ -23,7 +23,7 @@ const AdminForm = () => {
     year: "",
     photoURL: [],
     spec: "",
-    price: "negotiated",
+    price: "за домовленістю",
     description: "",
   };
 

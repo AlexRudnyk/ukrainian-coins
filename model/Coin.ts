@@ -23,7 +23,7 @@ const coinSchema = new Schema(
     price: {
       type: "string",
       required: true,
-      default: "negotiated",
+      default: "за домовленістю",
     },
     description: {
       type: "string",
