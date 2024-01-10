@@ -12,7 +12,7 @@ const Hero = () => {
       <h2 className={`${raleway.className} text-5xl mb-12 text-center`}>
         стань героєм своєї колекції монет!
       </h2>
-      <div className="w-[1280px] aspect-[2.56] bg-hero bg-cover bg-no-repeat bg-center rounded-3xl" />
+      <div className="w-full aspect-[2.56] bg-hero bg-cover bg-no-repeat bg-center rounded-3xl" />
     </div>
   );
 };

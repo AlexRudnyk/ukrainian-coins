@@ -1,8 +1,11 @@
 "use client";
-import React from "react";
+
+import React, { useEffect } from "react";
 import { Formik, Form, Field, FormikState } from "formik";
 import { ImagesUpload } from ".";
 import { addCoin } from "@/actions";
+import { useGlobalContext } from "@/context/store";
+import { useRouter } from "next/navigation";
 
 interface initialStateType {
   title: string;
@@ -18,6 +21,9 @@ interface ResetFormProps {
 }
 
 const AdminForm = () => {
+  const { isLoggedIn } = useGlobalContext();
+  const router = useRouter();
+
   const initialValues: initialStateType = {
     title: "",
     year: "",
@@ -26,6 +32,10 @@ const AdminForm = () => {
     price: "за домовленістю",
     description: "",
   };
+
+  useEffect(() => {
+    isLoggedIn ? router.replace("/admin") : router.replace("/login");
+  }, [isLoggedIn, router]);
 
   const handleSubmit = (
     values: initialStateType,

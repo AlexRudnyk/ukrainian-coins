@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Raleway } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components";
+import { GlobalContextProvider } from "@/context/store";
 
 const raleway = Raleway({ subsets: ["cyrillic"] });
 
@@ -18,8 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={raleway.className}>
-        <Header />
-        {children}
+        <GlobalContextProvider>
+          <Header />
+          {children}
+        </GlobalContextProvider>
       </body>
     </html>
   );

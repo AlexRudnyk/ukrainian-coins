@@ -1,0 +1,68 @@
+"use client";
+
+import React, {
+  createContext,
+  useContext,
+  Dispatch,
+  SetStateAction,
+  useState,
+  useEffect,
+} from "react";
+
+interface ContextProps {
+  isLoggedIn: boolean;
+  setIsLoggedIn: Dispatch<SetStateAction<boolean>>;
+}
+
+const GlobalContext = createContext<ContextProps>({
+  isLoggedIn: false,
+  setIsLoggedIn: (): void => {},
+});
+
+export const GlobalContextProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+
+  useEffect(() => {
+    const storedIsLoggedInData = localStorage.getItem("isLoggedIn");
+
+    if (storedIsLoggedInData) {
+      try {
+        const isLoggedInData = JSON.parse(storedIsLoggedInData);
+        setIsLoggedIn(isLoggedInData);
+      } catch (error) {
+        console.error("Error parsing JSON from localStorage:", error);
+      }
+    }
+  }, []);
+
+  const handleSetIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>> = (
+    value
+  ) => {
+    // Set the value in state
+    setIsLoggedIn((prev) => {
+      // Ensure you can handle prevState when updating based on it
+      if (typeof value === "function") {
+        return value(prev);
+      }
+      return value;
+    });
+    localStorage.setItem("isLoggedIn", JSON.stringify(value));
+  };
+
+  return (
+    <GlobalContext.Provider
+      value={{
+        isLoggedIn,
+        setIsLoggedIn: handleSetIsLoggedIn,
+      }}
+    >
+      {children}
+    </GlobalContext.Provider>
+  );
+};
+
+export const useGlobalContext = () => useContext(GlobalContext);
