@@ -17,13 +17,13 @@ export default async function CoinCard({ params }: { params: { id: string } }) {
         На головну
       </Link>
       <div className="flex">
-        <div className="mx-24 p-5 bg-white rounded-md">
+        <div className="mx-24 p-3 bg-white rounded-md">
           <Image
             src={coin.photoURL[0].toString()}
             width={300}
             height={300}
             alt="Specific coin"
-            className="mb-5"
+            className="mb-3"
           />
           <ImagesBox
             coin={{

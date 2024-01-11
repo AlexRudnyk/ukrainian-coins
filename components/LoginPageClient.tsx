@@ -43,8 +43,22 @@ const LoginPageClient = () => {
       </Link>
       <Formik initialValues={initialValues} onSubmit={handleLoginFormSubmit}>
         <Form>
-          <Field type="password" name="password" className="mr-5" />
-          <button type="submit">Ввести</button>
+          <label htmlFor="password" className="block mb-1">
+            Password
+          </label>
+          <Field
+            type="password"
+            name="password"
+            id="password"
+            className="mr-7 p-2 rounded-md"
+            placeholder="Введіть пароль"
+          />
+          <button
+            type="submit"
+            className="p-2 w-[100px] border border-gray-400 rounded-md hover:bg-gray-300 transition ease-in-out"
+          >
+            Ввести
+          </button>
         </Form>
       </Formik>
     </div>

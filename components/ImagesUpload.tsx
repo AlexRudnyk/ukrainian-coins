@@ -24,7 +24,7 @@ const ImagesUpload = ({ setFieldValue }: FormikProps) => {
   };
 
   return (
-    <>
+    <div className="my-10">
       <input
         type="file"
         multiple
@@ -35,13 +35,13 @@ const ImagesUpload = ({ setFieldValue }: FormikProps) => {
           }
         }}
       />
-      <button type="button" onClick={upload}>
+      <button type="button" onClick={upload} className="mr-8">
         Upload
       </button>
       <button type="button" onClick={() => setImages([])}>
         Reset
       </button>
-    </>
+    </div>
   );
 };
 

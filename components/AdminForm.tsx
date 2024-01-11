@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, FormikState } from "formik";
 import { ImagesUpload } from ".";
 import { addCoin } from "@/actions";
@@ -23,6 +23,7 @@ interface ResetFormProps {
 const AdminForm = () => {
   const { isLoggedIn } = useGlobalContext();
   const router = useRouter();
+  const [description, setDescription] = useState<string>("");
 
   const initialValues: initialStateType = {
     title: "",
@@ -48,14 +49,54 @@ const AdminForm = () => {
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       {({ values, setFieldValue }) => (
-        <Form>
-          <ImagesUpload setFieldValue={setFieldValue} />
-          <Field type="text" name="title" placeholder="title" />
-          <Field type="text" name="year" placeholder="year" />
-          <Field type="text" name="spec" placeholder="spec" />
-          <Field type="text" name="price" placeholder="price" />
-          <Field type="text" name="description" placeholder="description" />
-          <button type="submit">Submit</button>
+        <Form className="flex flex-col w-[600px]">
+          <div>
+            <ImagesUpload setFieldValue={setFieldValue} />
+          </div>
+          <div className="flex flex-col">
+            <Field
+              type="text"
+              name="title"
+              placeholder="Назва монети"
+              className="mb-5 p-2 rounded-md"
+            />
+            <Field
+              type="text"
+              name="year"
+              placeholder="Рік випуску"
+              className="mb-5 p-2 rounded-md"
+            />
+            <Field
+              type="text"
+              name="spec"
+              placeholder="Штамп"
+              className="mb-5 p-2 rounded-md"
+            />
+            <Field
+              type="text"
+              name="price"
+              placeholder="Орієнтовна ціна"
+              className="mb-5 p-2 rounded-md"
+            />
+            <Field
+              type="text"
+              as="textarea"
+              value={description}
+              name="description"
+              placeholder="Опис"
+              className="resize-none mb-5 p-2 rounded-md"
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+                setFieldValue("description", e.currentTarget.value);
+                setDescription(e.currentTarget.value);
+              }}
+            />
+          </div>
+          <button
+            type="submit"
+            className="p-2 w-[100px] border border-gray-400 rounded-md self-center hover:bg-gray-300 transition ease-in-out"
+          >
+            Submit
+          </button>
         </Form>
       )}
     </Formik>

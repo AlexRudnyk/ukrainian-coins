@@ -42,4 +42,14 @@ export async function getCoinById(id: string) {
   } catch (error) {
     console.log(error);
   }
+  revalidatePath("/");
+}
+
+export async function deleteCoin(id: string) {
+  try {
+    await Coin.findByIdAndDelete({ _id: id });
+  } catch (error) {
+    console.log(error);
+  }
+  revalidatePath("/");
 }
