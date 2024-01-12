@@ -53,3 +53,22 @@ export async function deleteCoin(id: string) {
   }
   revalidatePath("/");
 }
+
+export async function filterByYear(year: string) {
+  try {
+    await connect();
+
+    const filteredByYear = await Coin.find({ year: year });
+    return filteredByYear.map((item: CoinType) => ({
+      _id: item._id?.toString(),
+      title: item.title,
+      year: item.year,
+      spec: item.spec,
+      price: item.price,
+      description: item.description,
+      photoURL: item.photoURL,
+    }));
+  } catch (error) {
+    console.log(error);
+  }
+}

@@ -6,6 +6,7 @@ import Hero from "./Hero";
 import CoinsList from "./CoinsList";
 import LoginPageClient from "./LoginPageClient";
 import Logout from "./Logout";
+import Filters from "./Filters";
 
 export {
   AdminForm,
@@ -16,4 +17,5 @@ export {
   CoinsList,
   LoginPageClient,
   Logout,
+  Filters,
 };
