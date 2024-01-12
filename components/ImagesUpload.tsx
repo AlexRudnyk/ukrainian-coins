@@ -9,6 +9,7 @@ interface FormikProps {
 
 const ImagesUpload = ({ setFieldValue }: FormikProps) => {
   const [images, setImages] = useState<File[]>([]);
+  const [isUploaded, setIsUploaded] = useState<boolean>(false);
 
   const upload = async () => {
     try {
@@ -18,6 +19,7 @@ const ImagesUpload = ({ setFieldValue }: FormikProps) => {
         arr.push(data?.url);
       }
       setFieldValue("photoURL", arr);
+      setIsUploaded(true);
     } catch (error) {
       console.log(error);
     }
@@ -35,10 +37,24 @@ const ImagesUpload = ({ setFieldValue }: FormikProps) => {
           }
         }}
       />
-      <button type="button" onClick={upload} className="mr-8">
-        Upload
+      <button
+        type="button"
+        onClick={upload}
+        className="p-2 mr-8 w-[100px] border border-gray-400 rounded-md hover:bg-gray-300 transition ease-in-out relative"
+      >
+        Upload{" "}
+        {isUploaded && (
+          <span className="bg-[url('/success-check.png')] bg-no-repeat bg-center bg-cover w-[20px] h-[20px] absolute top-[-10px] right-[-10px]"></span>
+        )}
       </button>
-      <button type="button" onClick={() => setImages([])}>
+      <button
+        type="button"
+        onClick={() => {
+          setImages([]);
+          setIsUploaded(false);
+        }}
+        className="p-2 w-[100px] border border-gray-400 rounded-md hover:bg-gray-300 transition ease-in-out"
+      >
         Reset
       </button>
     </div>
