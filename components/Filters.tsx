@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-// import { Formik, Form, Field } from "formik";
 
 interface FiltersProps {
   getYear: (year: string) => void;
@@ -10,39 +9,32 @@ interface FiltersProps {
 const Filters = ({ getYear }: FiltersProps) => {
   const [optionYear, setOptionYear] = useState<string>("");
 
-  //   const handleFilterSubmit = ({ year }: { year: string }) => {
-  //     getYear(year);
-  //   };
-
   return (
     <div className="p-7 flex items-center">
       <p className="mr-10">Фільтри:</p>
-      {/* <Formik initialValues={{ year: "" }} onSubmit={() => {}}> */}
-      {/* {({ values, setFieldValue }) => ( */}
       <form>
+        <label htmlFor="year" className="mr-5">
+          Рік випуску
+        </label>
         <select
-          //   as="select"
           name="year"
+          id="year"
           value={optionYear}
           className="p-2 border border-black rounded-full bg-white w-20 mr-5"
           onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-            // setFieldValue("year", e.target.value);
             setOptionYear(e.target.value);
             getYear(e.target.value);
           }}
         >
-          <option value="">Рік</option>
-          <option value="2009">2009</option>
-          <option value="1993">1993</option>
+          <option value="">Всі</option>
           <option value="1994">1994</option>
-          <option value="1995">1995</option>
-          <option value="1996">1996</option>
-          <option value="1997">1997</option>
+          <option value="2001">2001</option>
+          <option value="2009">2009</option>
+          <option value="2011">2011</option>
+          <option value="2013">2013</option>
+          <option value="2014">2014</option>
         </select>
-        {/* <button type="submit">Ввести</button> */}
       </form>
-      {/* )} */}
-      {/* </Formik> */}
     </div>
   );
 };
