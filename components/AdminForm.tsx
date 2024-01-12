@@ -43,6 +43,7 @@ const AdminForm = () => {
     { resetForm }: ResetFormProps
   ) => {
     addCoin(values);
+    setDescription("");
     resetForm();
   };
 
