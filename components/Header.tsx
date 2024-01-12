@@ -18,9 +18,7 @@ const Header = () => {
     <header className="w-[1280px] mx-auto p-5 flex justify-between items-center">
       <div>
         <Link href="/">
-          <h2 className={`${great_vibes.className} text-4xl text-amber-600`}>
-            U-Coins
-          </h2>
+          <h2 className={`${great_vibes.className} text-4xl`}>U-Coins</h2>
         </Link>
       </div>
       <nav className="flex">
