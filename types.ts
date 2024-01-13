@@ -8,8 +8,9 @@ export interface CoinType {
   description: string;
   comments?: [
     {
-      name: string;
+      userName: string;
       text: string;
+      reply: string;
       date: Date;
     }
   ];

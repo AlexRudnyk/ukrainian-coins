@@ -19,6 +19,7 @@ export async function getAllCoins() {
 export async function addCoin(values: CoinType) {
   try {
     await connect();
+
     await Coin.create({
       title: values.title,
       year: values.year,
@@ -47,9 +48,33 @@ export async function getCoinById(id: string) {
 
 export async function deleteCoin(id: string) {
   try {
+    await connect();
+
     await Coin.findByIdAndDelete({ _id: id });
   } catch (error) {
     console.log(error);
   }
   revalidatePath("/");
+}
+
+export async function addComment(
+  { userName, text }: { userName: string; text: string },
+  id: string
+) {
+  try {
+    await connect();
+
+    const coin = await Coin.findById({ _id: id });
+
+    if (!coin) {
+      console.log("Coin is not found");
+      return;
+    }
+
+    coin.comments.unshift({ userName, text });
+
+    await coin.save();
+  } catch (error) {
+    console.log(error);
+  }
 }

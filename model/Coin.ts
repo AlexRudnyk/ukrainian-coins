@@ -31,18 +31,22 @@ const coinSchema = new Schema(
     },
     comments: [
       {
-        name: {
+        userName: {
           type: "string",
-          required: false,
+          required: true,
         },
         text: {
+          type: "string",
+          required: true,
+        },
+        reply: {
           type: "string",
           required: false,
         },
         date: {
           type: Date,
+          default: Date.now(),
           required: false,
-          default: Date.now,
         },
       },
     ],

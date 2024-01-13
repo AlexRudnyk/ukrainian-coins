@@ -7,6 +7,8 @@ import Link from "next/link";
 export default async function CoinCard({ params }: { params: { id: string } }) {
   const coin: CoinType = await getCoinById(params.id);
 
+  const commentsNumber = coin.comments?.length;
+
   return (
     <div className="w-[1280px] mx-auto mt-12">
       <Link
@@ -50,7 +52,7 @@ export default async function CoinCard({ params }: { params: { id: string } }) {
             )}
           </div>
           <div>
-            <CommentsBlock />
+            <CommentsBlock id={params.id} commentsNumber={commentsNumber} />
           </div>
         </div>
       </div>

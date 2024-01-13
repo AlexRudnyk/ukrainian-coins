@@ -12,11 +12,15 @@ import React, {
 interface ContextProps {
   isLoggedIn: boolean;
   setIsLoggedIn: Dispatch<SetStateAction<boolean>>;
+  isReadCommentsOpen: boolean;
+  setIsReadCommentsOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 const GlobalContext = createContext<ContextProps>({
   isLoggedIn: false,
   setIsLoggedIn: (): void => {},
+  isReadCommentsOpen: false,
+  setIsReadCommentsOpen: (): void => {},
 });
 
 export const GlobalContextProvider = ({
@@ -25,6 +29,7 @@ export const GlobalContextProvider = ({
   children: React.ReactNode;
 }) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isReadCommentsOpen, setIsReadCommentsOpen] = useState<boolean>(false);
 
   useEffect(() => {
     const storedIsLoggedInData = localStorage.getItem("isLoggedIn");
@@ -58,6 +63,8 @@ export const GlobalContextProvider = ({
       value={{
         isLoggedIn,
         setIsLoggedIn: handleSetIsLoggedIn,
+        isReadCommentsOpen,
+        setIsReadCommentsOpen,
       }}
     >
       {children}

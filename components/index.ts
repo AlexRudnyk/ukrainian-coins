@@ -8,6 +8,7 @@ import LoginPageClient from "./LoginPageClient";
 import Logout from "./Logout";
 import Filters from "./Filters";
 import CommentsBlock from "./CommentsBlock";
+import CommentsModal from "./CommentsModal";
 
 export {
   AdminForm,
@@ -20,4 +21,5 @@ export {
   Logout,
   Filters,
   CommentsBlock,
+  CommentsModal,
 };
