@@ -21,7 +21,7 @@ const Filters = ({ getYear, getTitle }: FiltersProps) => {
   }, [optionYear, optionTitle]);
 
   return (
-    <div className="p-7 flex items-center">
+    <div className="p-10 flex items-center">
       <p className="mr-10">Фільтри:</p>
       <form>
         <label htmlFor="year" className="mr-5">
@@ -46,6 +46,7 @@ const Filters = ({ getYear, getTitle }: FiltersProps) => {
           <option value="2014">2014</option>
         </select>
       </form>
+      <p className="mr-5">або</p>
       <form>
         <label htmlFor="title" className="mr-5">
           Номінал монети

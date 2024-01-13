@@ -41,7 +41,7 @@ const CoinsList = ({ coins }: CoinsListProps) => {
   return (
     <>
       <Filters getYear={getYear} getTitle={getTitle} />
-      <ul className="grid grid-cols-4 gap-10">
+      <ul className="grid grid-cols-4 gap-10 pb-5">
         {arrayToRender?.map((coin: CoinType) => (
           <li key={coin._id} className="p-5 bg-white rounded-md">
             <Link href={`/coin/${coin._id}`}>
@@ -65,7 +65,7 @@ const CoinsList = ({ coins }: CoinsListProps) => {
                 className="py-2"
                 onClick={() => handleDeleteCoin(coin._id)}
               >
-                Delete
+                Видалити
               </button>
             )}
           </li>
