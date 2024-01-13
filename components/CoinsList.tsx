@@ -18,6 +18,7 @@ interface CoinsListProps {
 const CoinsList = ({ coins }: CoinsListProps) => {
   const { isLoggedIn } = useGlobalContext();
   const [year, setYear] = useState<string>("");
+  const [title, setTitle] = useState<string>("");
 
   const handleDeleteCoin = (id: string | undefined): void => {
     if (id) deleteCoin(id);
@@ -27,13 +28,19 @@ const CoinsList = ({ coins }: CoinsListProps) => {
     setYear(year);
   };
 
-  const filteredArray = coins?.filter((coin: CoinType) => coin.year === year);
+  const getTitle = (title: string) => {
+    setTitle(title);
+  };
+
+  const filteredArray = coins?.filter(
+    (coin: CoinType) => coin.year === year || coin.title === title
+  );
   const arrayToRender =
     filteredArray?.length && filteredArray?.length > 0 ? filteredArray : coins;
 
   return (
     <>
-      <Filters getYear={getYear} />
+      <Filters getYear={getYear} getTitle={getTitle} />
       <ul className="grid grid-cols-4 gap-10">
         {arrayToRender?.map((coin: CoinType) => (
           <li key={coin._id} className="p-5 bg-white rounded-md">
