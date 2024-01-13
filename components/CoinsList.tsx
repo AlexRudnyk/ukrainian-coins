@@ -2,11 +2,11 @@
 
 import { CoinType } from "@/types";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Raleway } from "next/font/google";
 import Link from "next/link";
 import { useGlobalContext } from "@/context/store";
-import { deleteCoin, filterByYear } from "@/actions";
+import { deleteCoin } from "@/actions";
 import { Filters } from ".";
 
 const raleway = Raleway({ subsets: ["cyrillic"], weight: "500" });
@@ -18,7 +18,6 @@ interface CoinsListProps {
 const CoinsList = ({ coins }: CoinsListProps) => {
   const { isLoggedIn } = useGlobalContext();
   const [year, setYear] = useState<string>("");
-  const [filteredArray, setFilteredArray] = useState<CoinType[]>([]);
 
   const handleDeleteCoin = (id: string | undefined): void => {
     if (id) deleteCoin(id);
@@ -28,16 +27,9 @@ const CoinsList = ({ coins }: CoinsListProps) => {
     setYear(year);
   };
 
-  useEffect(() => {
-    const getFilteredArray = async () => {
-      const filterArray = await filterByYear(year);
-      if (filterArray) setFilteredArray(filterArray);
-    };
-    getFilteredArray();
-  }, [year]);
-
-  const arrayToRender: CoinType[] | undefined =
-    filteredArray.length > 0 ? filteredArray : coins;
+  const filteredArray = coins?.filter((coin: CoinType) => coin.year === year);
+  const arrayToRender =
+    filteredArray?.length && filteredArray?.length > 0 ? filteredArray : coins;
 
   return (
     <>

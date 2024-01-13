@@ -1,13 +1,19 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface FiltersProps {
   getYear: (year: string) => void;
 }
 
 const Filters = ({ getYear }: FiltersProps) => {
-  const [optionYear, setOptionYear] = useState<string>("");
+  const [optionYear, setOptionYear] = useState<string>(
+    typeof window !== "undefined" ? localStorage.getItem("year") || "" : ""
+  );
+
+  useEffect(() => {
+    getYear(optionYear);
+  }, [optionYear]);
 
   return (
     <div className="p-7 flex items-center">
@@ -23,7 +29,7 @@ const Filters = ({ getYear }: FiltersProps) => {
           className="p-2 border border-black rounded-full bg-white w-20 mr-5"
           onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
             setOptionYear(e.target.value);
-            getYear(e.target.value);
+            localStorage.setItem("year", e.target.value);
           }}
         >
           <option value="">Всі</option>
