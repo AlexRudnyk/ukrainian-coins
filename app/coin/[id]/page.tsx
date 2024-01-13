@@ -1,5 +1,5 @@
 import { getCoinById } from "@/actions";
-import { ImagesBox } from "@/components";
+import { CommentsBlock, ImagesBox } from "@/components";
 import { CoinType } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
@@ -37,16 +37,21 @@ export default async function CoinCard({ params }: { params: { id: string } }) {
             }}
           />
         </div>
-        <div className="">
-          <p className="text-3xl mb-5">Номінал монети: {coin.title}</p>
-          <p className="text-3xl mb-5">Рік випуску: {coin.year}</p>
-          <p className="text-3xl mb-5">Штамп: {coin.spec}</p>
-          <p className="text-3xl mb-5">Опис: {coin.description}</p>
-          {coin.price === "за домовленістю" ? (
-            <p className="text-3xl">Орієнтовна ціна: {coin.price}</p>
-          ) : (
-            <p className="text-3xl">Орієнтовна ціна: {coin.price} USD</p>
-          )}
+        <div className=" flex flex-col justify-between">
+          <div>
+            <p className="text-3xl mb-5">Номінал монети: {coin.title}</p>
+            <p className="text-3xl mb-5">Рік випуску: {coin.year}</p>
+            <p className="text-3xl mb-5">Штамп: {coin.spec}</p>
+            <p className="text-3xl mb-5">Опис: {coin.description}</p>
+            {coin.price === "за домовленістю" ? (
+              <p className="text-3xl">Орієнтовна ціна: {coin.price}</p>
+            ) : (
+              <p className="text-3xl">Орієнтовна ціна: {coin.price} USD</p>
+            )}
+          </div>
+          <div>
+            <CommentsBlock />
+          </div>
         </div>
       </div>
     </div>

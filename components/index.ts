@@ -7,6 +7,7 @@ import CoinsList from "./CoinsList";
 import LoginPageClient from "./LoginPageClient";
 import Logout from "./Logout";
 import Filters from "./Filters";
+import CommentsBlock from "./CommentsBlock";
 
 export {
   AdminForm,
@@ -18,4 +19,5 @@ export {
   LoginPageClient,
   Logout,
   Filters,
+  CommentsBlock,
 };
