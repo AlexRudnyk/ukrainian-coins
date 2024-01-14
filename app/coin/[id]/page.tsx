@@ -17,7 +17,7 @@ export default async function CoinCard({ params }: { params: { id: string } }) {
   }));
 
   return (
-    <div className="w-[1280px] mx-auto mt-12">
+    <div className="w-[1280px] mx-auto mt-12 pb-5">
       <Link
         href="/"
         className="underline inline-block mb-10 text-xl ml-10 relative"

@@ -10,6 +10,7 @@ import Filters from "./Filters";
 import CommentsBlock from "./CommentsBlock";
 import CommentsModal from "./CommentsModal";
 import ReadComments from "./ReadComments";
+import ReplyComment from "./ReplyComment";
 
 export {
   AdminForm,
@@ -24,4 +25,5 @@ export {
   CommentsBlock,
   CommentsModal,
   ReadComments,
+  ReplyComment,
 };

@@ -30,6 +30,7 @@ export const GlobalContextProvider = ({
 }) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [isReadCommentsOpen, setIsReadCommentsOpen] = useState<boolean>(false);
+  const [isReplyCommentOpen, setIsReplyCommentOpen] = useState<boolean>(false);
 
   useEffect(() => {
     const storedIsLoggedInData = localStorage.getItem("isLoggedIn");

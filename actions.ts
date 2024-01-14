@@ -101,3 +101,34 @@ export async function deleteComment(coinId: string, commentId: string) {
   }
   revalidatePath("/coin/[id]");
 }
+
+export async function replyComment(
+  text: string,
+  coinId: string,
+  commentId: string
+) {
+  try {
+    await connect();
+
+    const coin = await Coin.findById({ _id: coinId });
+    if (!coin) {
+      console.log("Coin is not found");
+      return;
+    }
+
+    const comment = coin.comments.find(
+      (comment: CommentType) => comment._id?.toString() === commentId
+    );
+    if (!comment) {
+      console.log("Comment is not found");
+      return;
+    }
+
+    comment.reply = text;
+
+    await coin.save();
+  } catch (error) {
+    console.log(error);
+  }
+  revalidatePath("/coin/[id]");
+}
