@@ -3,13 +3,19 @@
 import { CommentType } from "@/types";
 import React from "react";
 import { useGlobalContext } from "@/context/store";
+import { deleteComment } from "@/actions";
 
 interface ReadCommentsProps {
+  id: string;
   comments: CommentType[] | undefined;
 }
 
-const ReadComments = ({ comments }: ReadCommentsProps) => {
-  const { isReadCommentsOpen } = useGlobalContext();
+const ReadComments = ({ id: coinId, comments }: ReadCommentsProps) => {
+  const { isReadCommentsOpen, isLoggedIn } = useGlobalContext();
+
+  const handleDeleteCommentBtnClick = (commentId: string | undefined) => {
+    if (coinId && commentId) deleteComment(coinId, commentId);
+  };
 
   return (
     <div>
@@ -25,6 +31,14 @@ const ReadComments = ({ comments }: ReadCommentsProps) => {
               <p className="self-end text-gray-500">
                 {comment.date.toLocaleDateString()}
               </p>
+              {isLoggedIn && (
+                <button
+                  type="button"
+                  onClick={() => handleDeleteCommentBtnClick(comment._id)}
+                >
+                  Видалити
+                </button>
+              )}
             </li>
           ))}
         </ul>

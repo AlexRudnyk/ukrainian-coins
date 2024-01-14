@@ -63,7 +63,7 @@ export default async function CoinCard({ params }: { params: { id: string } }) {
           </div>
         </div>
       </div>
-      <ReadComments comments={comments} />
+      <ReadComments comments={comments} id={params.id} />
     </div>
   );
 }

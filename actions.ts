@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import connect from "./db";
 import Coin from "./model/Coin";
-import { CoinType } from "./types";
+import { CoinType, CommentType } from "./types";
 
 export async function getAllCoins() {
   try {
@@ -72,6 +72,28 @@ export async function addComment(
     }
 
     coin.comments.unshift({ userName, text });
+
+    await coin.save();
+  } catch (error) {
+    console.log(error);
+  }
+  revalidatePath("/coin/[id]");
+}
+
+export async function deleteComment(coinId: string, commentId: string) {
+  try {
+    await connect();
+
+    const coin = await Coin.findById({ _id: coinId });
+
+    if (!coin) {
+      console.log("Coin is not found");
+      return;
+    }
+
+    coin.comments = coin.comments.filter(
+      (comment: CommentType) => comment._id?.toString() !== commentId
+    );
 
     await coin.save();
   } catch (error) {
