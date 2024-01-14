@@ -77,4 +77,5 @@ export async function addComment(
   } catch (error) {
     console.log(error);
   }
+  revalidatePath("/coin/[id]");
 }

@@ -8,10 +8,19 @@ export interface CoinType {
   description: string;
   comments?: [
     {
+      _id: string;
       userName: string;
       text: string;
       reply: string;
       date: Date;
     }
   ];
+}
+
+export interface CommentType {
+  _id?: string;
+  userName: string;
+  text: string;
+  reply: string;
+  date: Date;
 }

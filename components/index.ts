@@ -9,6 +9,7 @@ import Logout from "./Logout";
 import Filters from "./Filters";
 import CommentsBlock from "./CommentsBlock";
 import CommentsModal from "./CommentsModal";
+import ReadComments from "./ReadComments";
 
 export {
   AdminForm,
@@ -22,4 +23,5 @@ export {
   Filters,
   CommentsBlock,
   CommentsModal,
+  ReadComments,
 };
