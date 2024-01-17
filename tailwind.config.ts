@@ -10,6 +10,11 @@ const config: Config = {
     extend: {
       backgroundImage: {
         hero: "url('/picsave_copy_.webp')",
+        mobile: "url('/mobile-phone.svg')",
+        telegram: "url('/telegram.svg')",
+        github: "url('/github.svg')",
+        linkedIn: "url('/linkedin.svg')",
+        admin: "url('/admin.svg')",
       },
     },
   },
