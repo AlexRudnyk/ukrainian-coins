@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Formik, Form, Field, FormikState } from "formik";
+import { Formik, Form, Field, FormikState, ErrorMessage } from "formik";
 import * as yup from "yup";
 import { addComment } from "@/actions";
 
@@ -85,25 +85,35 @@ const CommentsModal = ({ id, onClose }: CommentsModalProps) => {
           onSubmit={handleCommentsModalSubmit}
         >
           {({ values, setFieldValue }) => (
-            <Form>
-              <Field
-                type="text"
-                name="userName"
-                placeholder="Введіть своє ім'я"
-                className="p-2 mb-5 border border-gray-300 rounded-md w-full"
-              />
-              <Field
-                as="textarea"
-                type="text"
-                name="text"
-                value={text}
-                placeholder="Напишіть коментар"
-                className="p-2 mb-5 border border-gray-300 rounded-md w-full resize-none"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                  setFieldValue("text", e.target.value);
-                  setText(e.target.value);
-                }}
-              />
+            <Form className="w-full">
+              <div className="relative">
+                <Field
+                  type="text"
+                  name="userName"
+                  placeholder="Введіть своє ім'я"
+                  className="p-2 mb-5 border border-gray-300 rounded-md w-full"
+                />
+                <div className="absolute top-[37px] text-red-600">
+                  <ErrorMessage name="userName" />
+                </div>
+              </div>
+              <div className="relative">
+                <Field
+                  as="textarea"
+                  type="text"
+                  name="text"
+                  value={text}
+                  placeholder="Напишіть коментар"
+                  className="p-2 mb-5 border border-gray-300 rounded-md w-full resize-none"
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    setFieldValue("text", e.target.value);
+                    setText(e.target.value);
+                  }}
+                />
+                <div className="absolute top-[77px] text-red-600">
+                  <ErrorMessage name="text" />
+                </div>
+              </div>
               <div className="flex justify-center">
                 <button
                   type="submit"
