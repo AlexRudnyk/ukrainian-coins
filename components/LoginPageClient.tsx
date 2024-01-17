@@ -33,7 +33,7 @@ const LoginPageClient = () => {
   };
 
   return (
-    <div className="w-[1280px] mx-auto mt-10">
+    <div className="mo:max-w-[480px] sm:w-[480px] md:w-[768px] lg:w-[1280px] mx-auto p-5 mt-10">
       <Link
         href="/"
         className="underline inline-block mb-10 text-lg ml-10 relative"
@@ -50,7 +50,7 @@ const LoginPageClient = () => {
             type="password"
             name="password"
             id="password"
-            className="mr-7 p-2 rounded-md"
+            className="mr-7 p-2 rounded-md mo:mb-5"
             placeholder="Введіть пароль"
           />
           <button

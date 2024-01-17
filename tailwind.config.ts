@@ -7,6 +7,12 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      mo: { max: "479.98px" },
+      sm: "480px",
+      md: "768px",
+      lg: "1280px",
+    },
     extend: {
       backgroundImage: {
         hero: "url('/picsave_copy_.webp')",
@@ -15,6 +21,7 @@ const config: Config = {
         github: "url('/github.svg')",
         linkedIn: "url('/linkedin.svg')",
         admin: "url('/admin.svg')",
+        logout: "url('/logout.svg')",
       },
     },
   },

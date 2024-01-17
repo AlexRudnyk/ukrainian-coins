@@ -93,7 +93,7 @@ const CommentsModal = ({ id, onClose }: CommentsModalProps) => {
                   placeholder="Введіть своє ім'я"
                   className="p-2 mb-5 border border-gray-300 rounded-md w-full"
                 />
-                <div className="absolute top-[37px] text-red-600">
+                <div className="absolute top-[38px] text-red-600">
                   <ErrorMessage name="userName" />
                 </div>
               </div>
@@ -110,7 +110,7 @@ const CommentsModal = ({ id, onClose }: CommentsModalProps) => {
                     setText(e.target.value);
                   }}
                 />
-                <div className="absolute top-[77px] text-red-600">
+                <div className="absolute top-[65px] text-red-600">
                   <ErrorMessage name="text" />
                 </div>
               </div>

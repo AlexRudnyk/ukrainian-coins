@@ -15,7 +15,7 @@ const Header = () => {
   const { isLoggedIn } = useGlobalContext();
 
   return (
-    <header className="w-[1280px] mx-auto p-5 flex justify-between items-center">
+    <header className="mo:max-w-[480px] sm:w-[480px] md:w-[768px] lg:w-[1280px] mx-auto p-5 flex justify-between items-center">
       <div>
         <Link href="/">
           <h2 className={`${great_vibes.className} text-4xl`}>U-Coins</h2>

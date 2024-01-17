@@ -17,7 +17,7 @@ export default async function CoinCard({ params }: { params: { id: string } }) {
   }));
 
   return (
-    <div className="w-[1280px] mx-auto mt-12 pb-5">
+    <div className="mo:max-w-[480px] sm:w-[480px] md:w-[768px] lg:w-[1280px] mx-auto mt-12 p-5">
       <Link
         href="/"
         className="underline inline-block mb-10 text-xl ml-10 relative"
@@ -25,14 +25,14 @@ export default async function CoinCard({ params }: { params: { id: string } }) {
         <span className="before:absolute before:content-'' before:w-6 before:h-6 before:left-[-30px] before:top-[3px] before:bg-[url('/left-arrow-svgrepo-com.svg')]" />
         На головну
       </Link>
-      <div className="flex mb-10">
-        <div className="mx-24 p-3 bg-white rounded-md">
+      <div className="flex mo:flex-col sm:flex-col md:flex-row mb-10">
+        <div className="lg:mx-24 md:mr-5 p-3 bg-white rounded-md mo:mb-8 sm:mb-8 md:mb-0">
           <Image
             src={coin.photoURL[0].toString()}
             width={300}
             height={300}
             alt="Specific coin"
-            className="mb-3"
+            className="w-full h-auto mb-3"
           />
           <ImagesBox
             coin={{
@@ -47,15 +47,31 @@ export default async function CoinCard({ params }: { params: { id: string } }) {
           />
         </div>
         <div className=" flex flex-col justify-between">
-          <div>
-            <p className="text-3xl mb-5">Номінал монети: {coin.title}</p>
-            <p className="text-3xl mb-5">Рік випуску: {coin.year}</p>
-            <p className="text-3xl mb-5">Штамп: {coin.spec}</p>
-            <p className="text-3xl mb-5">Опис: {coin.description}</p>
+          <div className="mo:mb-8 sm:mb-8 md:mb-0">
+            <p className="text-3xl md:text-2xl lg:text-3xl mb-5">
+              <span className="text-gray-500">Номінал монети: </span>
+              {coin.title}
+            </p>
+            <p className="text-3xl md:text-2xl lg:text-3xl mb-5">
+              <span className="text-gray-500">Рік випуску: </span>
+              {coin.year}
+            </p>
+            <p className="text-3xl md:text-2xl lg:text-3xl mb-5">
+              <span className="text-gray-500">Штамп: </span> {coin.spec}
+            </p>
+            <p className="text-3xl md:text-2xl lg:text-3xl mb-5">
+              <span className="text-gray-500">Опис: </span> {coin.description}
+            </p>
             {coin.price === "за домовленістю" ? (
-              <p className="text-3xl">Орієнтовна ціна: {coin.price}</p>
+              <p className="text-3xl md:text-2xl lg:text-3xl">
+                <span className="text-gray-500">Орієнтовна ціна: </span>{" "}
+                {coin.price}
+              </p>
             ) : (
-              <p className="text-3xl">Орієнтовна ціна: {coin.price} USD</p>
+              <p className="text-3xl md:text-2xl lg:text-3xl">
+                <span className="text-gray-500">Орієнтовна ціна: </span>{" "}
+                {coin.price} USD
+              </p>
             )}
           </div>
           <div>

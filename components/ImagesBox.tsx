@@ -26,14 +26,20 @@ const ImagesBox = ({ coin }: ImagesBoxProps) => {
   }, []);
 
   return (
-    <div className="flex" ref={galleryRef}>
+    <div className="grid grid-cols-3 gap-[15px]" ref={galleryRef}>
       {coin.photoURL.map((url: string) => (
         <a
           href={url}
-          className="group mr-[15px] last:mr-0 hover:scale-105 transition ease-in-out cursor-zoom-in"
+          className="group last:mr-0 hover:scale-105 transition ease-in-out cursor-zoom-in"
           key={Math.random()}
         >
-          <Image src={url} width={90} height={90} alt="another looks of coin" />
+          <Image
+            src={url}
+            width={90}
+            height={90}
+            className="w-full h-auto"
+            alt="another looks of coin"
+          />
         </a>
       ))}
     </div>

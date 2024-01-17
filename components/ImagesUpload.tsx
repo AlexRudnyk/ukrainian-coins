@@ -30,6 +30,7 @@ const ImagesUpload = ({ setFieldValue }: FormikProps) => {
       <input
         type="file"
         multiple
+        className="mo:mb-5 sm:mb-5 md:mb-0"
         onChange={(e: ChangeEvent<HTMLInputElement>) => {
           if (e.target.files) {
             const fileList = Array.from(e.target.files);

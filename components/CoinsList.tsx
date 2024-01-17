@@ -41,7 +41,7 @@ const CoinsList = ({ coins }: CoinsListProps) => {
   return (
     <>
       <Filters getYear={getYear} getTitle={getTitle} />
-      <ul className="grid grid-cols-4 gap-10 pb-5">
+      <ul className="grid mo:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 p-5">
         {arrayToRender?.map((coin: CoinType) => (
           <li key={coin._id} className="p-5 bg-white rounded-md">
             <Link href={`/coin/${coin._id}`}>
@@ -50,7 +50,7 @@ const CoinsList = ({ coins }: CoinsListProps) => {
                 width={290}
                 height={290}
                 alt="coin"
-                className="mb-3"
+                className="mb-3 w-full h-auto"
               />
               <p className={`${raleway.className} text-lg`}>
                 {coin.title}, {coin.year}

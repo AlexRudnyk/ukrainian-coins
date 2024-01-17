@@ -21,17 +21,17 @@ const Filters = ({ getYear, getTitle }: FiltersProps) => {
   }, [optionYear, optionTitle]);
 
   return (
-    <div className="p-10 flex items-center">
-      <p className="mr-10">Фільтри:</p>
+    <div className="p-10 md:flex items-center">
+      <p className="mo:mb-5 sm:mb-5 md:mb-0 md:mr-10">Фільтри:</p>
       <form>
-        <label htmlFor="year" className="mr-5">
+        <label htmlFor="year" className="mo:mr-[116px] sm:mr-[116px] md:mr-5">
           Рік випуску
         </label>
         <select
           name="year"
           id="year"
           value={optionYear}
-          className="p-2 border border-black rounded-full bg-white w-[120px] mr-5"
+          className="p-2 border border-black rounded-full bg-white w-[120px] md:mr-5"
           onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
             setOptionYear(e.target.value);
             localStorage.setItem("year", e.target.value);
@@ -48,14 +48,14 @@ const Filters = ({ getYear, getTitle }: FiltersProps) => {
       </form>
       <p className="mr-5">або</p>
       <form>
-        <label htmlFor="title" className="mr-5">
+        <label htmlFor="title" className="mo:mr-20 sm:mr-20 md:mr-5">
           Номінал монети
         </label>
         <select
           name="title"
           id="title"
           value={optionTitle}
-          className="p-2 border border-black rounded-full bg-white w-[120px] mr-5"
+          className="p-2 border border-black rounded-full bg-white w-[120px]"
           onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
             setOptionTitle(e.target.value);
             localStorage.setItem("title", e.target.value);

@@ -16,7 +16,7 @@ export default async function Home() {
   }));
 
   return (
-    <main className="w-[1280px] mx-auto">
+    <main className="mo:max-w-[480px] sm:w-[480px] md:w-[768px] lg:w-[1280px] mx-auto">
       <Hero />
       <CoinsList coins={plainCoins} />
     </main>
