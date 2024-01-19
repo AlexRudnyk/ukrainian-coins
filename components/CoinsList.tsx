@@ -41,9 +41,9 @@ const CoinsList = ({ coins }: CoinsListProps) => {
   return (
     <>
       <Filters getYear={getYear} getTitle={getTitle} />
-      <ul className="grid mo:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 p-5">
+      <ul className="grid mo:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 mo:gap-5 md:gap-10 p-5">
         {arrayToRender?.map((coin: CoinType) => (
-          <li key={coin._id} className="p-5 bg-white rounded-md">
+          <li key={coin._id} className="mo:p-2 md:p-5 bg-white rounded-md">
             <Link href={`/coin/${coin._id}`}>
               <Image
                 src={coin.photoURL[0].toString()}

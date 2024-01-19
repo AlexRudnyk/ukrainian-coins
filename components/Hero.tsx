@@ -16,7 +16,7 @@ const Hero = () => {
       >
         стань героєм своєї колекції монет!
       </h2>
-      <div className="w-full aspect-[2.56] bg-hero bg-cover bg-no-repeat bg-center rounded-3xl" />
+      <div className="w-full mo:aspect-[1] md:aspect-[2.56] mo:bg-hero_mob md:bg-hero bg-cover bg-no-repeat bg-center rounded-3xl" />
     </div>
   );
 };
