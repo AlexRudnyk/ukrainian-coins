@@ -7,7 +7,7 @@ import Link from "next/link";
 export default async function CoinCard({ params }: { params: { id: string } }) {
   const coin: CoinType = await getCoinById(params.id);
 
-  const commentsNumber = coin.comments?.length;
+  const commentsNumber = coin?.comments?.length;
   const comments = coin.comments?.map((comment: CommentType) => ({
     _id: comment._id?.toString(),
     userName: comment.userName,

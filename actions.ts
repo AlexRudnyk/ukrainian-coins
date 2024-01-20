@@ -77,7 +77,7 @@ export async function addComment(
   } catch (error) {
     console.log(error);
   }
-  revalidatePath("/coin/[id]");
+  revalidatePath("/coin/[id]", "page");
 }
 
 export async function deleteComment(coinId: string, commentId: string) {
@@ -99,7 +99,7 @@ export async function deleteComment(coinId: string, commentId: string) {
   } catch (error) {
     console.log(error);
   }
-  revalidatePath("/coin/[id]");
+  revalidatePath("/coin/[id]", "page");
 }
 
 export async function replyComment(
@@ -130,5 +130,5 @@ export async function replyComment(
   } catch (error) {
     console.log(error);
   }
-  revalidatePath("/coin/[id]");
+  revalidatePath("/coin/[id]", "page");
 }

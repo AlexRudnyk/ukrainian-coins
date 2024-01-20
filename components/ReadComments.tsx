@@ -13,18 +13,26 @@ interface ReadCommentsProps {
 
 const ReadComments = ({ id: coinId, comments }: ReadCommentsProps) => {
   const { isReadCommentsOpen, isLoggedIn } = useGlobalContext();
-  const [isReplyCommentOpen, setIsReplyCommentOpen] = useState<boolean>(false);
+  const [replyCommentOpenStates, setReplyCommentOpenStates] = useState<{
+    [key: string]: boolean;
+  }>({});
 
   const handleDeleteCommentBtnClick = (commentId: string | undefined) => {
     if (coinId && commentId) deleteComment(coinId, commentId);
   };
 
-  const handleReplyCommentBtnClick = () => {
-    setIsReplyCommentOpen(!isReplyCommentOpen);
+  const handleReplyCommentBtnClick = (commentId: string) => {
+    setReplyCommentOpenStates((prevStates) => ({
+      ...prevStates,
+      [commentId]: !prevStates[commentId],
+    }));
   };
 
-  const handleReplyCommentModalClose = () => {
-    setIsReplyCommentOpen(!isReplyCommentOpen);
+  const handleReplyCommentModalClose = (commentId: string) => {
+    setReplyCommentOpenStates((prevStates) => ({
+      ...prevStates,
+      [commentId]: false,
+    }));
   };
 
   return (
@@ -57,14 +65,23 @@ const ReadComments = ({ id: coinId, comments }: ReadCommentsProps) => {
                     >
                       Видалити
                     </button>
-                    <button type="button" onClick={handleReplyCommentBtnClick}>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (comment._id)
+                          handleReplyCommentBtnClick(comment._id);
+                      }}
+                    >
                       Відповісти
                     </button>
                   </div>
                 )}
-                {isReplyCommentOpen && (
+                {comment._id && replyCommentOpenStates[comment._id] && (
                   <ReplyComment
-                    onClose={handleReplyCommentModalClose}
+                    onClose={() => {
+                      if (comment._id)
+                        handleReplyCommentModalClose(comment._id);
+                    }}
                     coinId={coinId}
                     commentId={comment._id}
                   />
