@@ -26,7 +26,7 @@ export default async function CoinCard({ params }: { params: { id: string } }) {
         На головну
       </Link>
       <div className="flex mo:flex-col sm:flex-col md:flex-row mb-10">
-        <div className="lg:mx-24 md:mr-5 p-3 bg-white rounded-md mo:mb-8 sm:mb-8 md:mb-0">
+        <div className="lg:mx-24 md:mr-5 p-3 bg-white rounded-md mo:mb-8 sm:mb-8 md:mb-0 md:w-1/3 md:h-fit">
           <Image
             src={coin.photoURL[0].toString()}
             width={300}
@@ -46,7 +46,7 @@ export default async function CoinCard({ params }: { params: { id: string } }) {
             }}
           />
         </div>
-        <div className=" flex flex-col justify-between">
+        <div className="flex flex-col justify-between md:w-2/3">
           <div className="mo:mb-8 sm:mb-8 md:mb-0">
             <p className="text-3xl md:text-2xl lg:text-3xl mb-5">
               <span className="text-gray-500">Номінал монети: </span>
@@ -59,17 +59,17 @@ export default async function CoinCard({ params }: { params: { id: string } }) {
             <p className="text-3xl md:text-2xl lg:text-3xl mb-5">
               <span className="text-gray-500">Штамп: </span> {coin.spec}
             </p>
-            <p className="text-3xl md:text-2xl lg:text-3xl mb-5">
+            <p className="text-3xl md:text-2xl lg:text-3xl mb-5 text-justify">
               <span className="text-gray-500">Опис: </span> {coin.description}
             </p>
             {coin.price === "за домовленістю" ? (
-              <p className="text-3xl md:text-2xl lg:text-3xl">
-                <span className="text-gray-500">Орієнтовна ціна: </span>{" "}
+              <p className="text-3xl md:text-2xl lg:text-3xl mb-8">
+                <span className="text-gray-500">Орієнтовна ціна: </span>
                 {coin.price}
               </p>
             ) : (
-              <p className="text-3xl md:text-2xl lg:text-3xl">
-                <span className="text-gray-500">Орієнтовна ціна: </span>{" "}
+              <p className="text-3xl md:text-2xl lg:text-3xl mb-8">
+                <span className="text-gray-500">Орієнтовна ціна: </span>
                 {coin.price} USD
               </p>
             )}
