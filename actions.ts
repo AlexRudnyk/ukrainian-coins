@@ -14,6 +14,7 @@ export async function getAllCoins() {
   } catch (error) {
     console.log(error);
   }
+  revalidatePath("/");
 }
 
 export async function addCoin(values: CoinType) {
