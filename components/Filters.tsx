@@ -31,7 +31,7 @@ const Filters = ({ getYear, getTitle }: FiltersProps) => {
           name="year"
           id="year"
           value={optionYear}
-          className="p-2 border border-black rounded-full bg-white w-[120px] md:mr-5"
+          className="p-2 border border-black rounded-full bg-white w-[120px] md:mr-5 cursor-pointer"
           onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
             setOptionYear(e.target.value);
             localStorage.setItem("year", e.target.value);
@@ -55,7 +55,7 @@ const Filters = ({ getYear, getTitle }: FiltersProps) => {
           name="title"
           id="title"
           value={optionTitle}
-          className="p-2 border border-black rounded-full bg-white w-[120px]"
+          className="p-2 border border-black rounded-full bg-white w-[120px] cursor-pointer"
           onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
             setOptionTitle(e.target.value);
             localStorage.setItem("title", e.target.value);

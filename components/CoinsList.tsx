@@ -84,25 +84,25 @@ const CoinsList = ({ coins, count }: CoinsListProps) => {
       </ul>
       <div className="p-8 flex align-middle justify-center">
         {pageNumber === 1 ? (
-          <div className="border border-1 border-gray-600 mr-8 rounded-md w-[130px] text-center">
+          <div className="border border-1 border-gray-600 mr-8 rounded-md w-[130px] text-center p-4">
             Попередня
           </div>
         ) : (
           <Link
             href={`?page=${pageNumber - 1}`}
-            className="border border-1 border-gray-600 mr-8 rounded-md w-[130px] text-center"
+            className="border border-1 border-gray-600 mr-8 rounded-md w-[130px] text-center p-4 hover:bg-gray-300"
           >
             Попередня
           </Link>
         )}
         {count && pageNumber === Math.ceil(count / 8) ? (
-          <div className="border border-1 border-gray-600 rounded-md w-[130px] text-center">
+          <div className="border border-1 border-gray-600 rounded-md w-[130px] text-center p-4">
             Наступна
           </div>
         ) : (
           <Link
             href={`?page=${pageNumber + 1}`}
-            className="border border-1 border-gray-600 rounded-md w-[130px] text-center"
+            className="border border-1 border-gray-600 rounded-md w-[130px] text-center p-4 hover:bg-gray-300"
           >
             Наступна
           </Link>
