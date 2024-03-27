@@ -1,24 +1,40 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
-interface FiltersProps {
-  getYear: (year: string) => void;
-  getTitle: (title: string) => void;
-}
+const Filters = () => {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
 
-const Filters = ({ getYear, getTitle }: FiltersProps) => {
-  const [optionYear, setOptionYear] = useState<string>(
-    typeof window !== "undefined" ? localStorage.getItem("year") || "" : ""
-  );
-  const [optionTitle, setOptionTitle] = useState<string>(
-    typeof window !== "undefined" ? localStorage.getItem("title") || "" : ""
-  );
+  const [optionYear, setOptionYear] = useState<string>("");
+  const [optionTitle, setOptionTitle] = useState<string>("");
 
-  useEffect(() => {
-    getYear(optionYear);
-    getTitle(optionTitle);
-  }, [optionYear, optionTitle]);
+  const handleYearSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setOptionYear(e.target.value);
+    const params = new URLSearchParams(searchParams);
+    if (e.target.value) {
+      params.set("year", e.target.value);
+    } else {
+      params.delete("year");
+    }
+
+    replace(`${pathname}?${params.toString()}`);
+  };
+
+  const handleTitleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setOptionTitle(e.target.value);
+    const params = new URLSearchParams(searchParams);
+    if (e.target.value) {
+      params.set("title", e.target.value);
+    } else {
+      params.delete("title");
+    }
+
+    replace(`${pathname}?${params.toString()}`);
+  };
 
   return (
     <div className="p-10 md:flex items-center">
@@ -32,18 +48,17 @@ const Filters = ({ getYear, getTitle }: FiltersProps) => {
           id="year"
           value={optionYear}
           className="p-2 border border-black rounded-full bg-white w-[120px] md:mr-5 cursor-pointer"
-          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-            setOptionYear(e.target.value);
-            localStorage.setItem("year", e.target.value);
-          }}
+          onChange={handleYearSelect}
         >
           <option value="">Всі</option>
+          <option value="1992">1992</option>
+          <option value="1993">1993</option>
           <option value="1994">1994</option>
-          <option value="2001">2001</option>
+          {/* <option value="2001">2001</option>
           <option value="2009">2009</option>
           <option value="2011">2011</option>
           <option value="2013">2013</option>
-          <option value="2014">2014</option>
+          <option value="2014">2014</option> */}
         </select>
       </form>
       <p className="mr-5">або</p>
@@ -56,10 +71,7 @@ const Filters = ({ getYear, getTitle }: FiltersProps) => {
           id="title"
           value={optionTitle}
           className="p-2 border border-black rounded-full bg-white w-[120px] cursor-pointer"
-          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-            setOptionTitle(e.target.value);
-            localStorage.setItem("title", e.target.value);
-          }}
+          onChange={handleTitleSelect}
         >
           <option value="">Всі</option>
           <option value="1 копійка">1 копійка</option>

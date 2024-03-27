@@ -5,16 +5,26 @@ import connect from "./db";
 import Coin from "./model/Coin";
 import { CoinType, CommentType } from "./types";
 
-export async function getAllCoins(page: number) {
+export async function getAllCoins(page: number, year: string, title: string) {
   const pagee = page || 1;
   const limit = 8;
 
   const skip = (pagee - 1) * limit;
 
+  let query: any = {};
+
+  if (year !== undefined && year !== "") {
+    query["year"] = year;
+  }
+
+  if (title !== undefined && title !== "") {
+    query["title"] = title;
+  }
+
   try {
     await connect();
 
-    const coins = await Coin.find().skip(skip).limit(limit);
+    const coins = await Coin.find(query).skip(skip).limit(limit);
     const count = await Coin.find().countDocuments();
     const response = { coins, count };
 

@@ -5,12 +5,15 @@ import { CoinType } from "@/types";
 export default async function Home({
   searchParams,
 }: {
-  searchParams: { page: number };
+  searchParams: { page: number; year: string; title: string };
 }) {
   const pageNumber =
     searchParams.page !== null && searchParams.page > 0 ? searchParams.page : 1;
 
-  const response = await getAllCoins(pageNumber);
+  const year = searchParams.year || "";
+  const title = searchParams.title || "";
+
+  const response = await getAllCoins(pageNumber, year, title);
 
   const coins: CoinType[] | undefined = response?.coins;
   const count: number | undefined = response?.count;

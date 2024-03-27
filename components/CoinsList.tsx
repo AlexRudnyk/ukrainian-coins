@@ -8,7 +8,8 @@ import Link from "next/link";
 import { useGlobalContext } from "@/context/store";
 import { deleteCoin } from "@/actions";
 import { Filters } from ".";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const raleway = Raleway({ subsets: ["cyrillic"], weight: "500" });
 
@@ -19,10 +20,10 @@ interface CoinsListProps {
 
 const CoinsList = ({ coins, count }: CoinsListProps) => {
   const { isLoggedIn } = useGlobalContext();
-  const [year, setYear] = useState<string>("");
-  const [title, setTitle] = useState<string>("");
 
   const params = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
 
   const pageQueryParam = params.get("page");
 
@@ -35,25 +36,11 @@ const CoinsList = ({ coins, count }: CoinsListProps) => {
     if (id) deleteCoin(id);
   };
 
-  const getYear = (year: string) => {
-    setYear(year);
-  };
-
-  const getTitle = (title: string) => {
-    setTitle(title);
-  };
-
-  const filteredArray = coins?.filter(
-    (coin: CoinType) => coin.year === year || coin.title === title
-  );
-  const arrayToRender =
-    filteredArray?.length && filteredArray?.length > 0 ? filteredArray : coins;
-
   return (
     <>
-      <Filters getYear={getYear} getTitle={getTitle} />
+      <Filters />
       <ul className="grid mo:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 mo:gap-5 md:gap-10 p-5">
-        {arrayToRender?.map((coin: CoinType) => (
+        {coins?.map((coin: CoinType) => (
           <li key={coin._id} className="mo:p-2 md:p-5 bg-white rounded-md">
             <Link href={`/coin/${coin._id}`}>
               <Image
@@ -88,24 +75,34 @@ const CoinsList = ({ coins, count }: CoinsListProps) => {
             Попередня
           </div>
         ) : (
-          <Link
-            href={`?page=${pageNumber - 1}`}
+          <button
+            type="button"
             className="border border-1 border-gray-600 mr-8 rounded-md w-[130px] text-center p-4 hover:bg-gray-300"
+            onClick={() => {
+              const searchParams = new URLSearchParams(params);
+              searchParams.set("page", (pageNumber - 1).toString());
+              replace(`${pathname}?${searchParams.toString()}`);
+            }}
           >
             Попередня
-          </Link>
+          </button>
         )}
         {count && pageNumber === Math.ceil(count / 8) ? (
           <div className="border border-1 border-gray-600 rounded-md w-[130px] text-center p-4">
             Наступна
           </div>
         ) : (
-          <Link
-            href={`?page=${pageNumber + 1}`}
+          <button
+            type="button"
             className="border border-1 border-gray-600 rounded-md w-[130px] text-center p-4 hover:bg-gray-300"
+            onClick={() => {
+              const searchParams = new URLSearchParams(params);
+              searchParams.set("page", (pageNumber + 1).toString());
+              replace(`${pathname}?${searchParams.toString()}`);
+            }}
           >
             Наступна
-          </Link>
+          </button>
         )}
       </div>
     </>
