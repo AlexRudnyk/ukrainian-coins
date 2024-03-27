@@ -26,7 +26,7 @@ const Filters = () => {
       params.delete("year");
     }
 
-    replace(`${pathname}?${params.toString()}`);
+    replace(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
   const handleTitleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -38,7 +38,7 @@ const Filters = () => {
       params.delete("title");
     }
 
-    replace(`${pathname}?${params.toString()}`);
+    replace(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
   return (
