@@ -25,7 +25,7 @@ export async function getAllCoins(page: number, year: string, title: string) {
     await connect();
 
     const coins = await Coin.find(query).skip(skip).limit(limit);
-    const count = await Coin.find().countDocuments();
+    const count = await Coin.find(query).countDocuments();
     const response = { coins, count };
 
     return response;
