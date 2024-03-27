@@ -11,6 +11,7 @@ import CommentsBlock from "./CommentsBlock";
 import CommentsModal from "./CommentsModal";
 import ReadComments from "./ReadComments";
 import ReplyComment from "./ReplyComment";
+import BackLink from "./BackLink";
 
 export {
   AdminForm,
@@ -26,4 +27,5 @@ export {
   CommentsModal,
   ReadComments,
   ReplyComment,
+  BackLink,
 };

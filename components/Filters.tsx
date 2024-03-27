@@ -9,8 +9,13 @@ const Filters = () => {
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  const [optionYear, setOptionYear] = useState<string>("");
-  const [optionTitle, setOptionTitle] = useState<string>("");
+  const [optionYear, setOptionYear] = useState<string>(
+    searchParams.get("year") ?? ""
+  );
+
+  const [optionTitle, setOptionTitle] = useState<string>(
+    searchParams.get("title") ?? ""
+  );
 
   const handleYearSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setOptionYear(e.target.value);
