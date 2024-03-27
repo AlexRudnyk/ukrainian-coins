@@ -71,13 +71,13 @@ const CoinsList = ({ coins, count }: CoinsListProps) => {
       </ul>
       <div className="p-8 flex align-middle justify-center">
         {pageNumber === 1 ? (
-          <div className="border border-1 border-gray-600 mr-8 rounded-md w-[130px] text-center p-4">
+          <div className="border border-1 border-gray-600 mr-8 rounded-md w-[130px] text-center p-4 opacity-50">
             Попередня
           </div>
         ) : (
           <button
             type="button"
-            className="border border-1 border-gray-600 mr-8 rounded-md w-[130px] text-center p-4 hover:bg-gray-300"
+            className="border border-1 border-gray-600 mr-8 rounded-md w-[130px] text-center p-4 hover:bg-gray-300 transition-all"
             onClick={() => {
               const searchParams = new URLSearchParams(params);
               searchParams.set("page", (pageNumber - 1).toString());
@@ -88,13 +88,13 @@ const CoinsList = ({ coins, count }: CoinsListProps) => {
           </button>
         )}
         {count && pageNumber === Math.ceil(count / 8) ? (
-          <div className="border border-1 border-gray-600 rounded-md w-[130px] text-center p-4">
+          <div className="border border-1 border-gray-600 rounded-md w-[130px] text-center p-4 opacity-50">
             Наступна
           </div>
         ) : (
           <button
             type="button"
-            className="border border-1 border-gray-600 rounded-md w-[130px] text-center p-4 hover:bg-gray-300"
+            className="border border-1 border-gray-600 rounded-md w-[130px] text-center p-4 hover:bg-gray-300 transition-all"
             onClick={() => {
               const searchParams = new URLSearchParams(params);
               searchParams.set("page", (pageNumber + 1).toString());
