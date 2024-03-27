@@ -8,17 +8,28 @@ import Link from "next/link";
 import { useGlobalContext } from "@/context/store";
 import { deleteCoin } from "@/actions";
 import { Filters } from ".";
+import { useSearchParams } from "next/navigation";
 
 const raleway = Raleway({ subsets: ["cyrillic"], weight: "500" });
 
 interface CoinsListProps {
   coins: CoinType[] | undefined;
+  count: number | undefined;
 }
 
-const CoinsList = ({ coins }: CoinsListProps) => {
+const CoinsList = ({ coins, count }: CoinsListProps) => {
   const { isLoggedIn } = useGlobalContext();
   const [year, setYear] = useState<string>("");
   const [title, setTitle] = useState<string>("");
+
+  const params = useSearchParams();
+
+  const pageQueryParam = params.get("page");
+
+  const pageNumber =
+    pageQueryParam !== null && parseInt(pageQueryParam) > 0
+      ? parseInt(pageQueryParam)
+      : 1;
 
   const handleDeleteCoin = (id: string | undefined): void => {
     if (id) deleteCoin(id);
@@ -71,6 +82,32 @@ const CoinsList = ({ coins }: CoinsListProps) => {
           </li>
         ))}
       </ul>
+      <div className="p-8 flex align-middle justify-center">
+        {pageNumber === 1 ? (
+          <div className="border border-1 border-gray-600 mr-8 rounded-md w-[130px] text-center">
+            Попередня
+          </div>
+        ) : (
+          <Link
+            href={`?page=${pageNumber - 1}`}
+            className="border border-1 border-gray-600 mr-8 rounded-md w-[130px] text-center"
+          >
+            Попередня
+          </Link>
+        )}
+        {count && pageNumber === Math.ceil(count / 8) ? (
+          <div className="border border-1 border-gray-600 rounded-md w-[130px] text-center">
+            Наступна
+          </div>
+        ) : (
+          <Link
+            href={`?page=${pageNumber + 1}`}
+            className="border border-1 border-gray-600 rounded-md w-[130px] text-center"
+          >
+            Наступна
+          </Link>
+        )}
+      </div>
     </>
   );
 };

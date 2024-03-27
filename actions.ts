@@ -5,12 +5,20 @@ import connect from "./db";
 import Coin from "./model/Coin";
 import { CoinType, CommentType } from "./types";
 
-export async function getAllCoins() {
+export async function getAllCoins(page: number) {
+  const pagee = page || 1;
+  const limit = 8;
+
+  const skip = (pagee - 1) * limit;
+
   try {
     await connect();
 
-    const coins = await Coin.find();
-    return coins;
+    const coins = await Coin.find().skip(skip).limit(limit);
+    const count = await Coin.find().countDocuments();
+    const response = { coins, count };
+
+    return response;
   } catch (error) {
     console.log(error);
   }
